@@ -4,9 +4,9 @@ import (
 	"strconv"
 	"time"
 
+	"github.com/jpillora/opts"
 	"github.com/jpillora/overseer"
 	"github.com/jpillora/overseer/fetcher"
-	"github.com/jpillora/opts"
 )
 
 func main() {
@@ -20,7 +20,7 @@ func main() {
 	}
 	opts.Parse(&c)
 	overseer.Run(overseer.Config{
-		Log: c.Log,
+		//Log: c.Log,
 		Program: func(state overseer.State) {
 			//noop
 			select {}

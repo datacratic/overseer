@@ -56,7 +56,7 @@ func (mp *master) run() error {
 	if err := mp.retreiveFileDescriptors(); err != nil {
 		return err
 	}
-	if mp.Config.Fetcher != nil {
+	if mp.Config.Fetcher != nil && !mp.Config.NoFetchLoop {
 		mp.fetch()
 		go mp.fetchLoop()
 	}
@@ -291,6 +291,9 @@ func (mp *master) triggerRestart() {
 	} else if mp.slaveCmd == nil || mp.restarting {
 		mp.debugf("no slave process")
 		return //skip
+	}
+	if mp.FetchOnRestart {
+		mp.fetch()
 	}
 	mp.debugf("graceful restart triggered")
 	mp.restarting = true

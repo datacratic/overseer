@@ -53,6 +53,8 @@ type Config struct {
 	//NoRestartAfterFetch disables automatic restarts after each upgrade.
 	//Though manual restarts using the RestartSignal can still be performed.
 	NoRestartAfterFetch bool
+	NoFetchLoop         bool
+	FetchOnRestart      bool
 	//Fetcher will be used to fetch binaries.
 	Fetcher fetcher.Interface
 }
