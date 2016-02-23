@@ -88,12 +88,12 @@ func (mp *master) checkBinary() error {
 	mp.binHash = hash.Sum(nil)
 	f.Close()
 	//test bin<->tmpbin moves
-	if err := move(tmpBinPath, mp.binPath); err != nil {
-		return fmt.Errorf("cannot move binary (%s)", err)
-	}
-	if err := move(mp.binPath, tmpBinPath); err != nil {
-		return fmt.Errorf("cannot move binary back (%s)", err)
-	}
+//	if err := move(tmpBinPath, mp.binPath); err != nil {
+//		return fmt.Errorf("cannot move binary (%s)", err)
+//	}
+//	if err := move(mp.binPath, tmpBinPath); err != nil {
+//		return fmt.Errorf("cannot move binary back (%s)", err)
+//	}
 	return nil
 }
 
@@ -293,7 +293,7 @@ func (mp *master) triggerRestart() {
 		return //skip
 	}
 	if mp.FetchOnRestart {
-		mp.fetch()
+		// mp.fetch()
 	}
 	mp.debugf("graceful restart triggered")
 	mp.restarting = true
